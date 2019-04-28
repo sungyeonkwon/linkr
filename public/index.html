@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Linkr</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono">
+    <link rel="stylesheet" href="assets/style.css" type="text/css">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row header gradient">
+        <div class="col-md-12 center">
+          <h1 class="logo">L–i–n–k–r</h1>
+        </div>
+        <div class="col-md-12 center">
+          <form method="get" id="linkr" autocomplete="off" novalidate>
+            <div class="form--el">
+              <label for="name">Name </label>
+              <input type="text" name="name" id="name" placeholder="Google" maxlength="20" size="12">
+            </div>
+            <div class="form--el">
+              <label for="url">Url </label>
+              <input type="url" name="url" id="url" placeholder="https://www.google.com/" required size="27">
+            </div>
+            <div class="form--el">
+              <input type="submit" value="Add Bookmark">
+            </div>
+            <span class="form--validation-message"></span>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="item-container">
+              <div id="item-wrapper"></div>
+              <div class="pagination-wrapper">
+                <button class="pageButton" id="button_prev">Prev</button>
+                <span id="page_number"></span>
+                <button class="pageButton" id="button_next">Next</button>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+  <script src="assets/helpers.js"></script>
+  <script src="assets/storage.js"></script>
+  <script src="assets/pagination.js"></script>
+  <script src="assets/main.js"></script>
+</html>
