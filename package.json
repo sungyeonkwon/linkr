@@ -10,10 +10,13 @@
     "jest": "^24.7.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/setupFiles.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupFiles.js"
+    ]
   },
   "author": "Sung Kwon",
   "license": "ISC"

@@ -1,4 +1,4 @@
-var localStorageMock = function(){
+var localStorageMock = function() {
   let store = {};
 
   return {
@@ -11,13 +11,12 @@ var localStorageMock = function(){
     setItem: function(key, value) {
       store[key] = value.toString();
     },
-    removeItem: function (key) {
+    removeItem: function(key) {
       delete store[key];
     }
-  }
+  };
 };
 
+Object.defineProperty(window, "localStorage", { value: localStorageMock() });
 
-Object.defineProperty(window, 'localStorage', { value: localStorageMock() });
-
-global.__PATH_PREFIX__ =  '';
+global.__SETUP_FILES_TEST__ = "THIS IS A TEST";
