@@ -1,5 +1,3 @@
-"use strict";
-
 /*
 DOM VARIABLES
 */
@@ -9,10 +7,6 @@ const body = document.querySelector('body')
 /*
 HELPER FUNCTIONS
 */
-
-const changeDomText  = (domEl, msg) => {
-  domEl.textContent = msg;
-}
 
 // TODO
 const doesUrlExist = url => {
@@ -63,6 +57,7 @@ const removeItem = e => {
     } else if (e.type === 'mouseout'){
       removeBtn.textContent = ''
     } else if (e.type === 'click') {
+      removeBtn.textContent = ''
       storage.removeItem(url)
     }
 
@@ -71,8 +66,13 @@ const removeItem = e => {
 
 // Check if the url already exists in storage
 const isUrlDuplicate = url => {
-  const allUrls = storage.getAllItems().map(item => item.url)
-  return allUrls.includes(url)
+  if (url) {
+    const allUrls = storage.getAllItems().map(item => item.url)
+    return allUrls.includes(url)
+  } else {
+    return 'enter url'
+  }
+
 }
 
 // Create domain name string for url
@@ -112,8 +112,6 @@ const validateForm = e => {
       // if the url is invalid
       if (!el.validity.valid && type === 'url') {
         changeDomText(formValiDom, 'Please enter a valid URL.')
-      } else {
-        changeDomText(formValiDom, 'Something went wrong. Please try again.')
       }
     }
   } else if (!doesUrlExist(url)) {
@@ -142,6 +140,9 @@ MAIN
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const pagination = new Pagination();
+  pagination.init();
 
   // Checking if this is index.html
   if (formLinkr) { 

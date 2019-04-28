@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 * {
   font-family: 'Ubuntu Mono', monospace;
   font-size:20px;
@@ -50,15 +52,20 @@ button:focus {
   padding:15px 0 30px 0;
 }
 
-.gradient {
-  /* background: rgb(203,203,203);
-  background: linear-gradient(180deg, rgba(203,203,203,1) 0%, rgba(255,255,255,1) 80%); */
+.result-banner {
+  padding:40px 0;
 }
 
+.result-banner p {
+  padding:0;
+  margin:0;
+}
 /* FORMS */
+
 form {
   margin-top:12px;
 }
+
 .form--el {
   display: inline-block;
   font-size:30px;
@@ -78,6 +85,7 @@ input[type=submit] {
   border:1px solid black;
   color:white;
 }
+
 input[type=submit]:hover {
   background-color:#aaa;
   border:1px solid #aaa;
@@ -87,12 +95,29 @@ input[type=submit]:hover {
 input:active {
   background-color:white;
 }
+
 input,
 button {
   border-radius: 25px;
   border:1px solid #ddd;
   padding:3px 25px;
+  background:white;
+}
 
+.result-btn {
+  border-radius: 30px;
+  padding:5px 25px;
+  font-size: 30px;
+  background-color:black;
+  color:white;
+  transition: all .2s linear;
+  margin-bottom:20px;
+  display:inline-block;
+}
+
+.result-btn:hover {
+  background-color:#aaa;
+  color:white;
 }
 
 ::placeholder {
@@ -103,7 +128,8 @@ button {
   color:black;
 }
 
-/* pagenation copy */
+/* PAGINATION */
+
 .item-container {
   width: 100%;
   display: block;
@@ -160,12 +186,12 @@ button {
  color:white;
  cursor:pointer;
  text-align: center;
- transition: all .1s linear;\
+ transition: all .1s linear;
 }
 
 .remove:hover {
   width: 60px;
- }
+}
 
 .item__bar h1{
   font-size:14px;
@@ -244,6 +270,8 @@ button {
 .opacity {
   opacity: 0.5;
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 991.98px) { 
   .item {

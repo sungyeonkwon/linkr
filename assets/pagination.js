@@ -1,8 +1,4 @@
-// TODO: make fake items if there are ramnans? for css.
-
-(function() {
-
-  function Pagination() {
+function Pagination() {
     
     const allItems = storage.getAllItems()
 
@@ -110,6 +106,4 @@
         return Math.ceil(allItems.length / records_per_page);  
     }
  }
-const pagination = new Pagination();
-pagination.init();
-})();
+
