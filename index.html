@@ -21,11 +21,11 @@
     <div class="container-fluid">
 
       <div class="row header gradient">
-        <div class="col-md-2">
+        <div class="col-md-12 center">
           <h1 class="logo">Linkr</h1>
         </div>
-        <div class="col-md-10">
-          <form method="get" id="linkr" novalidate>
+        <div class="col-md-12 center">
+          <form method="get" id="linkr" autocomplete="off" novalidate>
             <div class="form--el">
               <label for="name">Name </label>
               <input type="text" name="name" id="name" placeholder="Google" maxlength="20" size="12">
@@ -46,10 +46,10 @@
         <div class="col">
           <div class="item-container">
               <div class="item-wrapper" id="listingTable"></div>
-              <div class="pagination-block">
-                <button class="pageButton outline-none" id="button_prev">Prev</button>
-                <span id="page_number" class="outline-none"></span>
-                <button class="pageButton outline-none" id="button_next">Next</button>
+              <div class="pagination-wrapper">
+                <button class="pageButton" id="button_prev">Prev</button>
+                <span id="page_number"></span>
+                <button class="pageButton" id="button_next">Next</button>
               </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
     </div>
 
   </body>
-  <script src="assets/items.js"></script>
+  <script src="assets/helpers.js"></script>
   <script src="assets/storage.js"></script>
   <script src="assets/pagination.js"></script>
   <script src="assets/main.js"></script>

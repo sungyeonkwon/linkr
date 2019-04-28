@@ -26,7 +26,7 @@
     }
           
     let selectedPage = function() {
-        let page_number = document.getElementById('page_number').getElementsByClassName('clickPageNumber'); 
+        let page_number = document.getElementById('page_number').getElementsByClassName('page-number'); 
         for (let i = 0; i < page_number.length; i++) {
             if (i == current_page - 1) {
                 page_number[i].style.opacity = "1.0";
@@ -56,7 +56,7 @@
             <div class="item__bar">
               <h1 class="item__bar--title">
                 <span class="edit">Edit</span>
-                <input type="text" name="name" id="name" placeholder="${allItems[i].name}" maxlength="20" size="14" disabled>       
+                <input type="text" name="name" id="linkrname" placeholder="${allItems[i].name}" maxlength="20" size="20" disabled>       
               </h1>
               <span class="remove"></span>
             </div>
@@ -90,7 +90,7 @@
 
     let clickPage = function() {
         document.addEventListener('click', function(e) {
-            if(e.target.nodeName == "BUTTON" && e.target.classList.contains("clickPageNumber")) {
+            if(e.target.nodeName == "BUTTON" && e.target.classList.contains("page-number")) {
                 current_page = e.target.textContent;
                 changePage(current_page);
             }
@@ -102,7 +102,7 @@
             pageNumber.innerHTML = "";
 
         for(let i = 1; i < numPages() + 1; i++) {
-            pageNumber.innerHTML += "<button class='clickPageNumber'>" + i + "</button>";
+            pageNumber.innerHTML += "<button class='page-number'>" + i + "</button>";
         }
     }
 

@@ -22,27 +22,37 @@ button:focus {
   border-radius: 25px;
   border:1px solid black;
   outline:none;
+  user-select: none;
+  transition: border .2s linear;
 }
 
 /* LAYOUTS */
 
+.center {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .logo {
-  filter:blur(2px);
+  color: black;
+  /* -webkit-text-stroke: 2px black; */
+  font-size:85px;
+  display:inline-block;
+  transition: all .2s linear;
 }
 
 .logo:hover {
-  filter:blur(0px);
   cursor:pointer;
 }
 
 .header {
-  height:150px;
+  height:250px;
   padding:15px 0 30px 0;
 }
 
 .gradient {
-  background: rgb(203,203,203);
-  background: linear-gradient(180deg, rgba(203,203,203,1) 0%, rgba(255,255,255,1) 80%);
+  /* background: rgb(203,203,203);
+  background: linear-gradient(180deg, rgba(203,203,203,1) 0%, rgba(255,255,255,1) 80%); */
 }
 
 /* FORMS */
@@ -51,17 +61,27 @@ form {
 }
 .form--el {
   display: inline-block;
+  font-size:30px;
+  margin-right:20px;
 }
 
 .form--validation-message {
-  font-size:14px;
+  font-size:16px;
   color:red;
   display:block;
+  height:30px;
+  margin-top:15px;
 }
 
-input[type=submit]:hover {
+input[type=submit] {
   background-color:black;
+  border:1px solid black;
   color:white;
+}
+input[type=submit]:hover {
+  background-color:#aaa;
+  border:1px solid #aaa;
+  transition: all .1s linear;
 }
 
 input:active {
@@ -71,13 +91,18 @@ input,
 button {
   border-radius: 25px;
   border:1px solid #ddd;
-  padding:3px 15px;
+  padding:3px 25px;
 
 }
 
 ::placeholder {
-  color:rgba(0,0,0,0.2);
+  color:rgba(0,0,0,0.3);
 }
+
+#linkrname::placeholder {
+  color:black;
+}
+
 /* pagenation copy */
 .item-container {
   width: 100%;
@@ -104,15 +129,15 @@ button {
 .item {
   width:22vw;
   height:16vw;
-  margin:15px 0;
+  margin:20px 0;
 }
 
 .item__bar {
-  height: 29px;
+  height: 33px;
   background-color: #ddd;
   width: 100%;
   border-radius: 5px 5px 0 0;
-  padding: 0px 15px;
+  padding: 0 7px 0 15px;
   display:flex;
   flex-direction: row;
   flex-wrap:nowrap;
@@ -134,10 +159,12 @@ button {
  font-size:14px;
  color:white;
  cursor:pointer;
+ text-align: center;
+ transition: all .1s linear;\
 }
 
 .remove:hover {
-  width: 50px;
+  width: 60px;
  }
 
 .item__bar h1{
@@ -147,7 +174,7 @@ button {
 
 .item__bar input {
   background-color:#ddd;
-  padding: 3px 6px;
+  padding: 3px 8px;
   color:black;
 }
 
@@ -161,6 +188,7 @@ button {
   border-bottom:1px solid #ddd;
   height:calc(100% - 25px);
   padding:10px 15px;
+  transition: filter .15s linear;
 }
 
 .edit {
@@ -168,11 +196,15 @@ button {
   display:inline-block;
   font-size:14px;
   color: rgba(0,0,0,0.3);
+  transition: all .1s linear;
+}
+
+.edit:hover {
+  color: black;
 }
 
 .item__content:hover {
-  -webkit-filter: hue-rotate(90deg); /* Safari */
-  filter: hue-rotate(90deg);
+  filter: opacity(80%);
   cursor:pointer;
 }
 
@@ -188,37 +220,29 @@ button {
   color:rgba(0,0,0,0.4);
 }
 
-.clickPageNumber {
+.page-number {
   background-color: lightgrey;
   margin-left: 2px;
   margin-right: 2px;
 }
 
-.pagination-block {
+.pagination-wrapper {
   text-align: center;
   width: 100%;
+  margin: 70px 0;
 }
 
-.pagination-block span {
+.pagination-wrapper span {
   display: inline-block;
 }
 
-.pagination-block .pageButton {
-  background-color: grey;
-  color: white;
-}
 
-.pagination-block span:hover {
+.pagination-wrapper span:hover {
   cursor: pointer;
 }
 
 .opacity {
   opacity: 0.5;
-}
-
-.outline-none {
-  outline: none;
-  user-select: none; 
 }
 
 @media (max-width: 991.98px) { 

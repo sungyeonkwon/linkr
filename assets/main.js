@@ -5,11 +5,11 @@ DOM VARIABLES
 */
 const formLinkr = document.querySelector('#linkr')
 const body = document.querySelector('body')
-const removeBtn = document.querySelector('.remove')
 
 /*
 HELPER FUNCTIONS
 */
+
 const changeDomText  = (domEl, msg) => {
   domEl.textContent = msg;
 }
@@ -52,9 +52,14 @@ const removeItem = e => {
     const item = e.target.parentNode.parentNode
     const url = item.children[1].href;
     const removeBtn = item.children[0].children[1] 
+    console.log("item", item)
+    console.log("url", url)
+    console.log("removeBtn", removeBtn)
 
     if (e.type === 'mouseover'){
-      removeBtn.textContent = 'Remove'
+      setTimeout(() => {
+        removeBtn.textContent = 'Remove';
+      }, 190)
     } else if (e.type === 'mouseout'){
       removeBtn.textContent = ''
     } else if (e.type === 'click') {
@@ -78,35 +83,6 @@ const extractNameFromUrl = url => {
   } else {
     return 'No Name';
   }
-}
-
-// Format date for readability
-const formatDate = date => {
-  const MONTH_NAMES = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-  const day = date.getDate();
-  const month = MONTH_NAMES[date.getMonth()];
-  const year = date.getFullYear();
-  let hour = date.getHours();
-  let mins = date.getMinutes();
-  
-  // Add trailing zero to time
-  hour = hour < 10 ? '0' + hour : hour
-  mins = mins < 10 ? '0' + mins : mins
-  
-  return `${day} ${month} ${year} ${hour}:${mins}`
 }
 
 // Generate random color for backgrounds
@@ -171,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (formLinkr) { 
     formLinkr.addEventListener('submit', validateForm);
     body.addEventListener('click', editItem)
-    removeBtn.addEventListener('mouseover', removeItem)
-    removeBtn.addEventListener('mouseout', removeItem)
-    removeBtn.addEventListener('click', removeItem)
+    body.addEventListener('click', removeItem)
+    body.addEventListener('mouseover', removeItem)
+    body.addEventListener('mouseout', removeItem)
   }
 
 });
