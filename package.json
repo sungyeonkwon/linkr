@@ -1,0 +1,15 @@
+{
+  "name": "Linkr",
+  "version": "1.0.0",
+  "description": "JavaScript Bookmarking app",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Sung Kwon",
+  "license": "ISC"
+}

@@ -1,0 +1,1 @@
+const storage = require('./assets/storage');
