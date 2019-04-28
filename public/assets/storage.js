@@ -13,8 +13,8 @@ const EXAMPLE_ITEMS = [
     color: "rgba(210,93,158,0.5)"
   },
   {
-    name: "Giphy",
-    url: "https://giphy.com/",
+    name: "Hallo Internet",
+    url: "http://hallointer.net/",
     date: "10 May 2019 12:03",
     color: "rgba(120,19,30,0.5)"
   },
@@ -92,7 +92,8 @@ const EXAMPLE_ITEMS = [
   },
   {
     name: "On Particular Days I Search For",
-    url: "http://bl.ocks.org/sungyeonkwon/raw/98e161cfee9bc1e494340f3235278b16/",
+    url:
+      "http://bl.ocks.org/sungyeonkwon/raw/98e161cfee9bc1e494340f3235278b16/",
     date: "10 May 2019 17:25",
     color: "rgba(10,213,98,0.5)"
   },
@@ -128,79 +129,85 @@ const EXAMPLE_ITEMS = [
   }
 ];
 
+// Function constructor for storage
+function StorageConstructor() {
 
-function StorageConstructor () {
-
-  // Only initialise for the first time
+  // Only initialise with EXAMPLE_ITEMS for the first time
   this.init = () => {
     if (window.localStorage.links === undefined) {
-      window.localStorage.setItem("links", JSON.stringify(EXAMPLE_ITEMS))
+      window.localStorage.setItem("links", JSON.stringify(EXAMPLE_ITEMS));
     }
-  }
+  };
 
   // Clear storage
   this.clear = () => {
-    window.localStorage.clear()
-  }
+    window.localStorage.clear();
+  };
 
   // Get all the current items
   this.getAllItems = () => {
-    return JSON.parse(window.localStorage.getItem("links"))
-  }
+    return JSON.parse(window.localStorage.getItem("links"));
+  };
 
   // Get a single item
   this.getItem = url => {
-    const item = this.getAllItems().filter(item => item.url === url)
-    return item
-  }
+    const item = this.getAllItems().filter(item => item.url === url);
+    return item;
+  };
 
   // Get the recently added item
   this.getRecentItem = () => {
-    return JSON.parse(window.localStorage.getItem("links"))[0]
-  }
+    return JSON.parse(window.localStorage.getItem("links"))[0];
+  };
 
   // Find item by url and update item's name
   this.updateItemName = (url, newName) => {
-
-    const i = this.getAllItems().findIndex(item => item.url === url || item.url + '/' === url)
-    if (i > -1){
-      const item = this.getItem(url)[0]
-      const updatedItem = { ...item, name: newName, date: formatDate(new Date()) }
+    const i = this.getAllItems().findIndex(
+      item => item.url === url || item.url + "/" === url
+    );
+    if (i > -1) {
+      const item = this.getItem(url)[0];
+      const updatedItem = {
+        ...item,
+        name: newName,
+        date: formatDate(new Date())
+      };
       const updatedItems = [
         updatedItem,
         ...this.getAllItems().slice(0, i),
-        ...this.getAllItems().slice(i + 1),
-      ]
-  
-      window.localStorage.setItem("links", JSON.stringify(updatedItems))
+        ...this.getAllItems().slice(i + 1)
+      ];
+
+      window.localStorage.setItem("links", JSON.stringify(updatedItems));
       location.reload();
     }
-  }
+  };
 
-  // Remove item 
+  // Remove item
   this.removeItem = url => {
+    const newItems = this.getAllItems().filter(
+      item => item.url !== url && item.url + "/" !== url
+    );
 
-    const newItems = this.getAllItems().filter(item => item.url !== url && item.url + '/' !== url)
-
-    if (newItems){
-      window.localStorage.setItem("links", JSON.stringify(newItems))
+    if (newItems) {
+      window.localStorage.setItem("links", JSON.stringify(newItems));
       location.reload();
-      return 'success'
+      return "success";
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
-  // Add a new item 
+  // Add a new item
   this.setItem = newItem => {
-    const items = [newItem, ...this.getAllItems()]
-    return window.localStorage.setItem("links", JSON.stringify(items))
-  }
-
+    const items = [newItem, ...this.getAllItems()];
+    return window.localStorage.setItem("links", JSON.stringify(items));
+  };
 }
-const storage = new StorageConstructor();
-storage.init()
 
+// Initialise storage
+const storage = new StorageConstructor();
+storage.init();
 
 module.exports = {
   storage

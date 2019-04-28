@@ -28,7 +28,7 @@ describe("doesUrlExist", () => {
     expect(main.doesUrlExist('http://iamheretotalk.online')).toEqual(true);
   });
 
-  it("url does not exist", () => {
+  it("check if url exists", () => {
     expect(main.doesUrlExist('http://sefl-awdkn.com')).toEqual(false);
   });
 
