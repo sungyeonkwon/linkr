@@ -1,42 +1,35 @@
-/*
-DOM VARIABLES
-*/
-const formLinkr = document.querySelector('#linkr')
-const body = document.querySelector('body')
-
-/*
-HELPER FUNCTIONS
-*/
-
-// TODO
-const doesUrlExist = url => {
-  const xhr = new XMLHttpRequest();
-  return true
+// Enable editing (1) by Click
+const editItemClick = e => {
+  const isEdit = e.target.classList.contains('edit')
+  if (isEdit){
+    editItem(e)
+  }
 }
 
-// Handle editing item
+// Enable editing (2) by return key press
+const editItemReturn = e => {
+  if(e.keyCode === 13 && e.target.id === 'linkrname'){
+    editItem(e)
+  }
+}
+
+// Edit item name
 const editItem = e => {
+  const item = e.target.parentNode.parentNode.parentNode
+  const url = item.children[1].href;
+  const editItemBtn = item.children[0].children[0].children[0]
+  const input = item.children[0].children[0].children[1]
 
-  const isEdit = e.target.classList.contains('edit')
-
-  if (isEdit){
-    const item = e.target.parentNode.parentNode.parentNode
-    const url = item.children[1].href;
-    const itemBarTitle = e.target.parentNode;
-    const editItemBtn = itemBarTitle.children[0]
-    const input = itemBarTitle.children[1]
-
-    if (input.disabled){
-      input.disabled = false;
-      input.classList.add('active');
-      changeDomText(editItemBtn, 'Save')
-    } else {
-      input.disabled = true;
-      const newName = input.value;
-      input.classList.remove('active');
-      storage.updateItemName(url, newName)
-      changeDomText(editItemBtn, 'Edit')
-    }
+  if (input.disabled){
+    input.disabled = false;
+    input.classList.add('active');
+    changeDomText(editItemBtn, 'Save')
+  } else {
+    input.disabled = true;
+    const newName = input.value;
+    input.classList.remove('active');
+    storage.updateItemName(url, newName)
+    changeDomText(editItemBtn, 'Edit')
   }
 }
 
@@ -45,26 +38,58 @@ const removeItem = e => {
   if (e.target.classList.contains('remove')) {
     const item = e.target.parentNode.parentNode
     const url = item.children[1].href;
-    const removeBtn = item.children[0].children[1] 
-    console.log("item", item)
-    console.log("url", url)
-    console.log("removeBtn", removeBtn)
+    const removeBtn = item.children[0].children[1]
 
     if (e.type === 'mouseover'){
-      setTimeout(() => {
-        removeBtn.textContent = 'Remove';
-      }, 190)
+      removeBtn.textContent = 'Remove';
     } else if (e.type === 'mouseout'){
-      removeBtn.textContent = ''
+      removeBtn.textContent = '';
     } else if (e.type === 'click') {
-      removeBtn.textContent = ''
+      removeBtn.textContent = '';
       storage.removeItem(url)
+    } else {
+      removeBtn.textContent = '';
     }
-
   }
 }
 
-// Check if the url already exists in storage
+// URL check (1) Check if the string follows url patterns
+const isUrlValid = url => {
+  const regex = /^((https?:\/\/))?([\w\d\-]+.)?[\w\d\-]+\.([\w\.]+)+(\/?([\w\d\-\/]*))$/
+  return regex.test(url)
+}
+
+// URL check (2) Check if the url exists
+const doesUrlExist = url => {
+
+  // function createCORSRequest(method, url) {
+  //   let xhr = new XMLHttpRequest();
+  //   if ("withCredentials" in xhr) {
+  //     // Check if the XMLHttpRequest object has a "withCredentials" property.
+  //     // "withCredentials" only exists on XMLHTTPRequest2 objects.
+  //     xhr.open(method, url, true);
+  //   } else if (typeof XDomainRequest != "undefined") {
+  //     // Otherwise, check if XDomainRequest.
+  //     // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+  //     xhr = new XDomainRequest();
+  //     xhr.open(method, url);
+  //   } else {
+  //     // Otherwise, CORS is not supported by the browser.
+  //     xhr = null;
+  //   }
+  //   return xhr;
+  // }
+  
+  // var xhr = createCORSRequest('GET', url);
+  // console.log("xhr", xhr)
+  // if (!xhr) {
+  //   throw new Error('CORS not supported');
+  // }
+
+  return true;
+}
+
+// URL check (3) Check if the url already exists in storage
 const isUrlDuplicate = url => {
   if (url) {
     const allUrls = storage.getAllItems().map(item => item.url)
@@ -72,13 +97,12 @@ const isUrlDuplicate = url => {
   } else {
     return 'enter url'
   }
-
 }
 
 // Create domain name string for url
 const extractNameFromUrl = url => {
   const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
-  if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+  if (match !== null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
   return match[2];
   } else {
     return 'No Name';
@@ -94,68 +118,66 @@ const getRandomColor = () => {
   return `rgba(${f(r()*LIMIT)}, ${f(r()*LIMIT)}, ${f(r()*LIMIT)}, ${OPACITY})`
 }
 
+// Validate form and save new item
 const validateForm = e => {
+  
   e.preventDefault();
   
-  const elms = e.target.elements;
-  const isValid = e.target.checkValidity();
   const formValiDom = document.querySelector('.form--validation-message')
   const url = document.getElementById('url').value
   const name = document.getElementById('name').value || extractNameFromUrl(url)
 
-  // if any of the form input is invalid 
-  if (!isValid) { 
-    for (let i = 0; i < elms.length; i++){
-      const el = elms[i]
-      const type = el.type
-
-      // if the url is invalid
-      if (!el.validity.valid && type === 'url') {
-        changeDomText(formValiDom, 'Please enter a valid URL.')
-      }
-    }
+  if (!isUrlValid(url)) {
+    changeDomText(formValiDom, 'Please enter a valid URL.')
   } else if (!doesUrlExist(url)) {
     changeDomText(formValiDom, 'URL doesn\'t exist.')
   } else if (isUrlDuplicate(url)) {
     changeDomText(formValiDom, 'URL is already in the bookmark')
   } else {
-
-    const newItem = { 
-      name, 
-      url, 
-      date: formatDate(new Date()),
-      color: getRandomColor(),
-    }
-
-    // Add item to storage
-    storage.setItem(newItem)
-
-    // Redirect to result.html
-    window.location.href = 'result.html';
+    saveItem(name, url)
   }
 }
 
-/*
-MAIN
-*/
+const saveItem = (name, url) => {
+  
+  const newItem = { 
+    name, 
+    url, 
+    date: formatDate(new Date()),
+    color: getRandomColor(),
+  }
+
+  // Add item to storage
+  storage.setItem(newItem)
+
+  // Redirect to result.html
+  window.location.href = 'result.html';
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const formLinkr = document.querySelector('#linkr')
+  const body = document.querySelector('body')
 
   const pagination = new Pagination();
   pagination.init();
 
-  // Checking if this is index.html
+  // Only applicable if this is index.html
   if (formLinkr) { 
     formLinkr.addEventListener('submit', validateForm);
-    body.addEventListener('click', editItem)
+    body.addEventListener('click', editItemClick)
     body.addEventListener('click', removeItem)
     body.addEventListener('mouseover', removeItem)
     body.addEventListener('mouseout', removeItem)
+    body.addEventListener('keypress', editItemReturn);
   }
 
 });
 
 
-
-
-
+module.exports = {
+  isUrlValid,
+  extractNameFromUrl,
+  doesUrlExist
+};

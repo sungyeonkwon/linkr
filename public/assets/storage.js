@@ -49,8 +49,8 @@ const EXAMPLE_ITEMS = [
     color: "rgba(140,89,229,0.5)"
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com",
+    name: "Ghent Art Book Fair",
+    url: "https://ghentartbookfair.org/",
     date: "10 May 2019 17:55",
     color: "rgba(10,193,58,0.5)"
   },
@@ -91,8 +91,8 @@ const EXAMPLE_ITEMS = [
     color: "rgba(120,19,129,0.5)"
   },
   {
-    name: "I am Here to Talk",
-    url: "http://iamheretotalk.online",
+    name: "On Particular Days I Search For",
+    url: "http://bl.ocks.org/sungyeonkwon/raw/98e161cfee9bc1e494340f3235278b16/",
     date: "10 May 2019 17:25",
     color: "rgba(10,213,98,0.5)"
   },
@@ -103,8 +103,8 @@ const EXAMPLE_ITEMS = [
     color: "rgba(190,55,230,0.5)"
   },
   {
-    name: "Is it Christmas?",
-    url: "https://isitchristmas.com",
+    name: "D3",
+    url: "https://d3js.org/",
     date: "10 May 2019 12:03",
     color: "rgba(55,200,230,0.5)"
   },
@@ -162,7 +162,7 @@ function StorageConstructor () {
   // Find item by url and update item's name
   this.updateItemName = (url, newName) => {
 
-    const i = this.getAllItems().findIndex(item => item.url === url)
+    const i = this.getAllItems().findIndex(item => item.url === url || item.url + '/' === url)
     if (i > -1){
       const item = this.getItem(url)[0]
       const updatedItem = { ...item, name: newName, date: formatDate(new Date()) }
@@ -179,14 +179,15 @@ function StorageConstructor () {
 
   // Remove item 
   this.removeItem = url => {
-    const i = this.getAllItems().findIndex(item => item.url === url)
-    if (i > -1){
-      const updatedItems = [
-        ...this.getAllItems().slice(0, i),
-        ...this.getAllItems().slice(i + 1),
-      ]
-      window.localStorage.setItem("links", JSON.stringify(updatedItems))
+
+    const newItems = this.getAllItems().filter(item => item.url !== url && item.url + '/' !== url)
+
+    if (newItems){
+      window.localStorage.setItem("links", JSON.stringify(newItems))
       location.reload();
+      return 'success'
+    } else {
+      return false
     }
   }
 
