@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formLinkr = document.querySelector("#linkr");
   const body = document.querySelector("body");
 
-  // Below us only applicable on index.html
+  // Below is only applicable on index.html
   if (formLinkr) {
     formLinkr.addEventListener("submit", validateForm);
     body.addEventListener("click", editItemClick);
@@ -174,8 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-module.exports = {
-  isUrlValid,
-  extractNameFromUrl,
-  doesUrlExist
-};
+// module.exports = {
+//   isUrlValid,
+//   extractNameFromUrl,
+//   doesUrlExist
+// };

@@ -32,7 +32,7 @@ const changeDomText = (domEl, msg) => {
   domEl.textContent = msg;
 };
 
-module.exports = {
-  formatDate,
-  changeDomText
-};
+// module.exports = {
+//   formatDate,
+//   changeDomText
+// };

@@ -209,6 +209,6 @@ function Storage() {
 const storage = new Storage();
 storage.init();
 
-module.exports = {
-  storage
-};
+// module.exports = {
+//   storage
+// };

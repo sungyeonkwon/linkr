@@ -24,19 +24,20 @@ function Pagination() {
     nextButton.addEventListener("click", nextPage);
   };
 
+  // Adjust opacity of the page number button according to current selected page
   const selectedPage = () => {
     let page_number = document
-      .getElementById("page_number")
-      .getElementsByClassName("page-number");
+      .querySelectorAll(".page-number");
     for (let i = 0; i < page_number.length; i++) {
       if (i == current_page - 1) {
-        page_number[i].style.opacity = "1.0";
+        page_number[i].classList.remove("opacity");
       } else {
-        page_number[i].style.opacity = "0.5";
+        page_number[i].classList.add("opacity")
       }
     }
   };
 
+  // Adjust opacity of the prev and next button
   const checkButtonOpacity = () => {
     current_page == 1
       ? prevButton.classList.add("opacity")
@@ -46,7 +47,9 @@ function Pagination() {
       : nextButton.classList.remove("opacity");
   };
 
+  // Create items according to page number
   const changePage = page => {
+    // If there is no item, show message
     if (allItems.length < 1) {
       itemWrapper.innerHTML =
         '<p class="center">No bookmarks to show. Please add some!</p>';
@@ -107,6 +110,7 @@ function Pagination() {
     }
   };
 
+  // Change current page according to click event
   const clickPage = () => {
     document.addEventListener("click", e => {
       if (
@@ -119,6 +123,7 @@ function Pagination() {
     });
   };
 
+  // Append page number buttons 
   const pageNumbers = () => {
     let pageNumber = document.getElementById("page_number");
     pageNumber.innerHTML = "";
@@ -128,6 +133,7 @@ function Pagination() {
     }
   };
 
+  // Get number of pages needed given records_per_page
   const numPages = () => {
     return Math.ceil(allItems.length / records_per_page);
   };
