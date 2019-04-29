@@ -209,6 +209,7 @@ function Storage() {
 const storage = new Storage();
 storage.init();
 
+// // Exports for testing
 // module.exports = {
 //   storage
 // };

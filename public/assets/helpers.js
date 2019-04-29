@@ -32,6 +32,8 @@ const changeDomText = (domEl, msg) => {
   domEl.textContent = msg;
 };
 
+
+// // Exports for testing
 // module.exports = {
 //   formatDate,
 //   changeDomText
