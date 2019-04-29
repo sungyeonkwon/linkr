@@ -20,20 +20,27 @@ const editItem = e => {
   const url = item.children[1].href;
   const editItemBtn = item.children[0].children[0].children[0];
   const input = item.children[0].children[0].children[1];
+  if (!url.includes('undefined')) { // TODO. not a good condition
+    console.log("1", url)
 
-  if (input.disabled) {
-    input.disabled = false;
-    input.classList.add("active");
-    changeDomText(editItemBtn, "Save");
+    if (input.disabled) {
+      input.disabled = false;
+      input.classList.add("active");
+      changeDomText(editItemBtn, "Save");
+    } else {
+      input.disabled = true;
+      const newName = input.value;
+      input.classList.remove("active");
+      storage.updateItemName(url, newName);
+      changeDomText(editItemBtn, "Edit");
+    }
   } else {
-    input.disabled = true;
-    const newName = input.value;
-    input.classList.remove("active");
-    storage.updateItemName(url, newName);
-    changeDomText(editItemBtn, "Edit");
+    console.log("url is undefined");
   }
+
 };
 
+// TODO: need to be able to remove undefined item
 // Handle removing item
 const removeItem = e => {
   if (e.target.classList.contains("remove")) {
@@ -43,12 +50,8 @@ const removeItem = e => {
 
     if (e.type === "mouseover") {
       removeBtn.textContent = "Remove";
-    } else if (e.type === "mouseout") {
-      removeBtn.textContent = "";
-    } else if (e.type === "click") {
-      removeBtn.textContent = "";
-      storage.removeItem(url);
     } else {
+      e.type === "click" ? storage.removeItem(url) : null;
       removeBtn.textContent = "";
     }
   }
@@ -62,8 +65,17 @@ const isUrlValid = url => {
 
 // URL check (2) Check if the url exists
 const doesUrlExist = url => {
-  // TODO
-  return true;
+
+  const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+  const x = new XMLHttpRequest();
+  x.open('GET', cors_api_url + url);
+  x.onload = x.onerror = () => {
+    const res = `GET ${url} ${x.status}`;
+    console.log(res);
+    return x.status === '200';
+    // need to return a promise!
+  };
+  x.send();
 };
 
 // URL check (3) Check if the url already exists in storage
@@ -108,15 +120,17 @@ const validateForm = e => {
   const formValiDom = document.querySelector(".form--validation-message");
   const url = document.getElementById("url").value;
   const name = document.getElementById("name").value || extractNameFromUrl(url);
+  
+  const doesUrlExist = doesUrlExist(url);
 
   if (!isUrlValid(url)) {
     changeDomText(formValiDom, "Please enter a valid URL.");
-  } else if (!doesUrlExist(url)) {
+  } else if (!doesUrlExist) {
     changeDomText(formValiDom, "URL doesn't exist.");
   } else if (isUrlDuplicate(url)) {
     changeDomText(formValiDom, "URL is already in the bookmark");
   } else {
-    saveItem(name, url);
+    url !== undefined ? saveItem(name, url) : null;
   }
 };
 
