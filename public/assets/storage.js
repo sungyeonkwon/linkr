@@ -130,7 +130,7 @@ const EXAMPLE_ITEMS = [
 ];
 
 // Function constructor for storage
-function StorageConstructor() {
+function Storage() {
 
   // Only initialise with EXAMPLE_ITEMS for the first time
   this.init = () => {
@@ -206,7 +206,7 @@ function StorageConstructor() {
 }
 
 // Initialise storage
-const storage = new StorageConstructor();
+const storage = new Storage();
 storage.init();
 
 module.exports = {

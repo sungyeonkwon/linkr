@@ -163,10 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const formLinkr = document.querySelector("#linkr");
   const body = document.querySelector("body");
 
-  // Initialise pagination and display items
-  const pagination = new Pagination();
-  pagination.init();
-
   // Below us only applicable on index.html
   if (formLinkr) {
     formLinkr.addEventListener("submit", validateForm);

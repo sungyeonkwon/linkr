@@ -1,4 +1,7 @@
+// Function constructor for pagination
 function Pagination() {
+
+  // Get all items from storage
   const allItems = storage.getAllItems();
 
   const prevButton = document.getElementById("button_prev");
@@ -8,7 +11,7 @@ function Pagination() {
   let current_page = 1;
   let records_per_page = 20;
 
-  this.init = function() {
+  this.init = () => {
     changePage(1);
     pageNumbers();
     selectedPage();
@@ -16,12 +19,12 @@ function Pagination() {
     addEventListeners();
   };
 
-  const addEventListeners = function() {
+  const addEventListeners = () => {
     prevButton.addEventListener("click", prevPage);
     nextButton.addEventListener("click", nextPage);
   };
 
-  const selectedPage = function() {
+  const selectedPage = () => {
     let page_number = document
       .getElementById("page_number")
       .getElementsByClassName("page-number");
@@ -34,7 +37,7 @@ function Pagination() {
     }
   };
 
-  const checkButtonOpacity = function() {
+  const checkButtonOpacity = () => {
     current_page == 1
       ? prevButton.classList.add("opacity")
       : prevButton.classList.remove("opacity");
@@ -105,7 +108,7 @@ function Pagination() {
   };
 
   const clickPage = () => {
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", e => {
       if (
         e.target.nodeName == "BUTTON" &&
         e.target.classList.contains("page-number")
@@ -129,3 +132,7 @@ function Pagination() {
     return Math.ceil(allItems.length / records_per_page);
   };
 }
+
+// Initialise pagination and display items
+const pagination = new Pagination();
+pagination.init();
