@@ -1,0 +1,80 @@
+[debug] [2019-04-30T00:34:26.101Z] ----------------------------------------------------------------------
+[debug] [2019-04-30T00:34:26.103Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-04-30T00:34:26.103Z] CLI Version:   6.3.1
+[debug] [2019-04-30T00:34:26.103Z] Platform:      darwin
+[debug] [2019-04-30T00:34:26.103Z] Node Version:  v11.10.0
+[debug] [2019-04-30T00:34:26.108Z] Time:          Tue Apr 30 2019 01:34:26 GMT+0100 (British Summer Time)
+[debug] [2019-04-30T00:34:26.108Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-30T00:34:26.122Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-30T00:34:26.122Z] > authorizing via signed-in user
+[debug] [2019-04-30T00:34:26.122Z] [iam] checking project linkr-phantom for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-04-30T00:34:26.124Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-04-30T00:34:26.124Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-04-30T00:34:26.304Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-30T00:34:26.319Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/linkr-phantom:testIamPermissions  
+
+[debug] [2019-04-30T00:34:27.062Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-30T00:34:27.064Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/linkr-phantom  
+ 
+[debug] [2019-04-30T00:34:27.282Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'linkr-phantom'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-04-30T00:34:27.285Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/linkr-phantom/versions  
+
+[debug] [2019-04-30T00:34:38.018Z] <<< HTTP RESPONSE 503
+[debug] [2019-04-30T00:34:38.018Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-04-30T00:34:38.022Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 30 Apr 2019 00:34:37 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,44,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/linkr-phantom/versions",
+        "path": "/v1beta1/sites/linkr-phantom/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/linkr-phantom/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
