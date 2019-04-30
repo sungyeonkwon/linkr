@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (formLinkr) {
     formLinkr.addEventListener('submit', validateForm);
     body.addEventListener('click', editItemClick);
+    body.addEventListener('keypress', editItemReturn);
     body.addEventListener('click', removeItem);
     body.addEventListener('mouseover', removeItem);
     body.addEventListener('mouseout', removeItem);
-    body.addEventListener('keypress', editItemReturn);
   }
 });
 
