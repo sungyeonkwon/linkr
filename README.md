@@ -1,7 +1,7 @@
 # L-i-n-k-r
 
 A client-side JavaScript web app which maintains a list of bookmarks. 
-* Live website: https://linkr-phantom.firebaseapp.com
+Live website: https://linkr-phantom.firebaseapp.com
 
 ## Features
 * User can enter new bookmarks, edit their name, and remove them. 
