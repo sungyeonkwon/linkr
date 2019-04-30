@@ -22,4 +22,3 @@ All development JavaScript files including test are inside of the ‘js’ folde
 * Testing: Jest
 * Formatting: Prettier (default + single quote)
 * Dependencies*: Cors Anywhere API(https://github.com/Rob--W/cors-anywhere/)
-
