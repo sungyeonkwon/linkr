@@ -190,14 +190,14 @@ button {
   color: white;
   cursor: pointer;
   text-align: center;
-  /* transition: all .08s linear; */
 }
 
 .remove .remove-text {
   font-size: 14px;
   opacity: 0;
-  transition: all 0.2s linear;
+  transition: opacity 0.2s linear;
 }
+
 .remove:hover {
   width: 60px;
 }
@@ -205,6 +205,7 @@ button {
 .remove:hover .remove-text {
   opacity: 1;
 }
+
 .item__bar h1 {
   font-size: 14px;
   width: 85%;
@@ -214,6 +215,7 @@ button {
   background-color: #ddd;
   padding: 3px 8px;
   color: black;
+  transition: all .2s linear;
 }
 
 .item__bar input.active {
@@ -259,9 +261,10 @@ button {
 }
 
 .page-number {
-  background-color: lightgrey;
+  background-color: white;
   margin-left: 2px;
   margin-right: 2px;
+  border:1px solid black;
 }
 
 .pagination-wrapper {
@@ -278,8 +281,34 @@ button {
   cursor: pointer;
 }
 
+.pagination-wrapper button:hover {
+  border: 1px solid black;
+  transition: all 0.2s linear;
+}
+
+#button--next,
+#button--prev {
+  background: black;
+  color:white;
+  border: none;
+}
+
+#button--next.opacity:hover,
+#button--prev.opacity:hover {
+  background: black;
+  color:white;
+  border: none;
+}
+
+#button--next:hover,
+#button--prev:hover {
+  background: #aaa;
+  color:white;
+  border: none;
+}
+
 .opacity {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 /* MEDIA QUERIES */
@@ -300,6 +329,7 @@ button {
 }
 
 @media (max-width: 991.98px) {
+
   #item-wrapper {
     justify-content: space-between;
   }
@@ -331,9 +361,11 @@ button {
   img {
     width: 100%;
   }
+
 }
 
 @media (max-width: 575.98px) {
+
   .logo {
     font-size: 40px;
   }
@@ -342,4 +374,16 @@ button {
     width: 100vw;
     height: 60vw;
   }
+  .remove {
+    width: 60px;
+  }
+  
+  .remove .remove-text {
+    opacity: 1;
+  }
+  
+  .remove:hover .remove-text {
+    opacity: 1;
+  }
+
 }
