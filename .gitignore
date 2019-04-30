@@ -1,7 +1,8 @@
 node_modules/
 .firebaserc
 .firebase/
-.prettierrc
+firebase-debug.log
 firebase.json
+.prettierrc
 .DS_Store
 setupFiles.js
