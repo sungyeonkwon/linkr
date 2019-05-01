@@ -168,7 +168,7 @@ function Storage() {
   // Find item by url and update item's name
   this.updateItemName = (url, newName) => {
     const i = this.getAllItems().findIndex(
-      item => item.url === url || item.url + '/' === url
+      item => getUrlVarients(url).includes(item.url)
     );
     if (i > -1) {
       const item = this.getItem(url)[0];

@@ -37,3 +37,12 @@ const changeDomText = (domEl, msg, color = 'red') => {
   domEl.style.color = color;
   domEl.textContent = msg;
 };
+
+// Get an array of url varients
+const getUrlVarients = url => {
+  if (url.substr(-1) === '/') {
+    return [ url, url.substr(0, url.length - 1) ]
+  } else {
+    return [ url, url + '/' ]
+  }
+}

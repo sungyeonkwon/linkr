@@ -59,8 +59,7 @@ const isUrlValid = url => {
 // URL check (2) Check if the url already exists in storage
 const isUrlDuplicate = url => {
   if (url) {
-    const allUrls = storage.getAllItems().map(item => item.url);
-    return allUrls.includes(url);
+    return storage.getAllItems().some(item => getUrlVarients(url).includes(item.url));
   }
   return false;
 };
