@@ -66,7 +66,7 @@ function Pagination() {
       i++
     ) {
       const item = `
-          <div class="item">
+        <div class="item">
           <div class="item__bar">
             <h1 class="item__bar--title">
               <span class="edit">Edit</span>

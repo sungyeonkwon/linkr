@@ -30,6 +30,10 @@ button:focus {
 
 /* LAYOUTS */
 
+.container-fluid {
+  padding: 0px 30px;
+}
+
 .center {
   text-align: center;
   margin: 0 auto;
@@ -133,34 +137,6 @@ button {
 }
 
 /* PAGINATION */
-
-.item-container {
-  width: 100%;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-}
-
-.pagination #item-wrapper {
-  min-height: 250px;
-  text-indent: 20px;
-}
-
-#item-wrapper {
-  position: relative;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: space-between;
-}
-
-.item {
-  width: 22vw;
-  height: 16vw;
-  margin: 20px 1.03vw;
-}
 
 .item__bar {
   height: 33px;
@@ -311,11 +287,37 @@ button {
   opacity: 0.3;
 }
 
+/* GRID */
+
+.grid-item {
+  background: yellow;
+  border: 2px solid red;
+  width:100%;
+  height:150px;
+}
+
+
+.item {
+  height:16vw;
+  width:100%;
+}
+
+.grid-container,
+#item-wrapper {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 22% 22% 22% 22%; 
+  grid-gap: 50px;
+  justify-content: space-between;	
+}
+
+
+
 /* MEDIA QUERIES */
 
 @media (max-width: 1199.98px) {
-  .item {
-    margin: 20px 0.9vw;
+  #item-wrapper {
+    grid-template-columns: 30% 30% 30%; 
   }
 
   .form--el {
@@ -323,21 +325,22 @@ button {
   }
 
   .item {
-    width: 30vw;
+    width:100%;
     height: 20vw;
   }
 }
 
 @media (max-width: 991.98px) {
+  .container-fluid {
+    padding: 0px 15px;
+  }
 
   #item-wrapper {
-    justify-content: space-between;
+    grid-template-columns: 46% 46%; 
   }
 
   .item {
-    width: 45vw;
     height: 30vw;
-    margin: 20px 0;
   }
 
   .logo {
@@ -366,12 +369,16 @@ button {
 
 @media (max-width: 575.98px) {
 
+  #item-wrapper {
+    grid-template-columns: 100%; 
+    grid-gap: 40px;
+  }
+
   .logo {
     font-size: 40px;
   }
 
   .item {
-    width: 100vw;
     height: 60vw;
   }
   .remove {
