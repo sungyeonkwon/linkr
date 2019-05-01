@@ -49,6 +49,7 @@ function Pagination() {
   const changePage = page => {
     // If there is no item, show message
     if (allItems.length < 1) {
+      itemWrapper.style.display = 'block';
       itemWrapper.innerHTML =
         '<p class="center">No bookmarks to show. Please add some!</p>';
       return false;

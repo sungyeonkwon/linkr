@@ -296,13 +296,11 @@ button {
   height:150px;
 }
 
-
 .item {
   height:16vw;
   width:100%;
 }
 
-.grid-container,
 #item-wrapper {
   width: 100%;
   display: inline-grid;
@@ -310,8 +308,6 @@ button {
   grid-gap: 50px;
   justify-content: space-between;	
 }
-
-
 
 /* MEDIA QUERIES */
 
