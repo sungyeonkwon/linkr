@@ -56,7 +56,16 @@ const isUrlValid = url => {
   return regex.test(url);
 };
 
-// URL check (2) Check if the url exists
+// URL check (2) Check if the url already exists in storage
+const isUrlDuplicate = url => {
+  if (url) {
+    const allUrls = storage.getAllItems().map(item => item.url);
+    return allUrls.includes(url);
+  }
+  return false;
+};
+
+// URL check (3) Check if the url exists
 const doesUrlExist = url => {
   return new Promise((resolve, reject) => {
     const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
@@ -78,15 +87,6 @@ const doesUrlExist = url => {
     x.onerror = () => reject(x.statusText);
     x.send();
   });
-};
-
-// URL check (3) Check if the url already exists in storage
-const isUrlDuplicate = url => {
-  if (url) {
-    const allUrls = storage.getAllItems().map(item => item.url);
-    return allUrls.includes(url);
-  }
-  return false;
 };
 
 // Create domain name string for url
@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (formLinkr) {
     formLinkr.addEventListener('submit', validateForm);
     body.addEventListener('click', editItemClick);
+    body.addEventListener('keypress', editItemReturn);
     body.addEventListener('click', removeItem);
     body.addEventListener('mouseover', removeItem);
     body.addEventListener('mouseout', removeItem);
-    body.addEventListener('keypress', editItemReturn);
   }
 });
 
